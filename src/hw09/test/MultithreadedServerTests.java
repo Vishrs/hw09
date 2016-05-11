@@ -42,16 +42,44 @@ public class MultithreadedServerTests extends TestCase {
 		for (int i = A; i <= Z; i++) {
 			accounts[i] = new Account(Z-i);
 		}			 
-		
-		MultithreadedServer.runServer("src/hw09/data/increment", accounts);
-	
+
+		System.out.println("account status \n");
+		dumpAccounts();
+		System.out.println("==============================================\n");
+		MultithreadedServer.runServer("src/hw09/data/rotate", accounts);
+		dumpAccounts();
 		// assert correct account values
 		for (int i = A; i <= Z; i++) {
 			Character c = new Character((char) (i+'A'));
 			assertEquals("Account "+c+" differs",Z-i+1,accounts[i].getValue());
-		}		
+		}
+		
+		dumpAccounts();
 
 	 }
+     
+     
+     @Test
+ 	public void test1() throws IOException {
+
+ 		// initialize accounts
+    	 /*shared mutable states*/
+ 		accounts = new Account[numLetters];
+ 		accounts[0] = new Account(0);
+ 		accounts[1] = new Account(0);
+ 		accounts[5] = new Account(9);
+ 		accounts[9] = new Account(5);
+ 		accounts[11] = new Account(5);
+ 		accounts[16] = new Account(37);
+
+ 		MultithreadedServer.runServer("hw09/data/test1", accounts);
+ 		
+ 		assertEquals("Account A differs", 9, accounts[0].getValue());
+ 		assertEquals("Account B differs", 14, accounts[1].getValue());
+ 		assertEquals("Account F differs", 9, accounts[5].getValue());
+ 		assertEquals("Account J differs", 5, accounts[9].getValue());
+
+ 	}
 	 	  	 
 	
 }

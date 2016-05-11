@@ -8,7 +8,7 @@ import java.io.IOException;
 // You will need to modify it to make it a task,
 // so it can be given to an Executor thread pool.
 //
-class Task1 {
+class Task {
     private static final int A = constants.A;
     private static final int Z = constants.Z;
     private static final int numLetters = constants.numLetters;
@@ -25,7 +25,7 @@ class Task1 {
     // writing, or both, (2) verify all previously peeked-at values,
     // (3) perform all updates, and (4) close all opened accounts.
 
-    public Task1(Account[] allAccounts, String trans) {
+    public Task(Account[] allAccounts, String trans) {
         accounts = allAccounts;
         transaction = trans;
     }
